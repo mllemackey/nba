@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
+use App\Team;
 use Illuminate\Http\Request;
-use App\User;
 
-class RegisterController extends Controller
+class CommentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('guest');
-
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +15,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        return view('register.create');
+        //
     }
 
     /**
@@ -39,30 +34,28 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Team $team)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed'
+            'content' => 'required|min:10'
         ]);
 
-        $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password)
+        Comment::create([
+            'content' => $request->content,
+            'user_id' => auth()->user()->id,
+            'team_id' => $team->id
             ]);
-        auth()->login($user);
-        return redirect('/');
+
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Comment $comment)
     {
         //
     }
@@ -70,10 +63,10 @@ class RegisterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -82,10 +75,10 @@ class RegisterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -93,10 +86,10 @@ class RegisterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
         //
     }

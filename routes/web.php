@@ -13,6 +13,7 @@
 
 Route::get('/', 'TeamController@index');
 Route::get('/teams/{team}', 'TeamController@show');
+Route::post('/teams/{team}', 'CommentController@store');
 Route::get('/players', 'PlayerController@index');
 Route::get('/players/{player}', 'PlayerController@show');
 
