@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'TeamController@index')->name('home');
+Route::get('/', 'TeamController@index');
 Route::get('/teams/{team}', 'TeamController@show');
 Route::get('/players', 'PlayerController@index');
 Route::get('/players/{player}', 'PlayerController@show');
@@ -19,6 +19,6 @@ Route::get('/players/{player}', 'PlayerController@show');
 Route::get('/register', 'RegisterController@index');
 Route::post('/register', 'RegisterController@store');
 
-Route::get('/login', 'LoginController@index');
+Route::get('/login', 'LoginController@index')->name('login');
 Route::get('/logout', 'LoginController@destroy');
 Route::post('/login', 'LoginController@store');

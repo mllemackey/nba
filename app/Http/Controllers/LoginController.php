@@ -7,6 +7,15 @@ use App\User;
 
 class LoginController extends Controller
 {
+     public function __construct()
+    {
+        $this->middleware('guest')->only('index');
+
+        // $this->middleware('log')->only('index');
+
+        // $this->middleware('subscribed')->except('store');
+    }
+
     /**
      * Display a listing of the resource.
      *
