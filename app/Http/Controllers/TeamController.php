@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Team;
+use App\Player;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -14,7 +15,8 @@ class TeamController extends Controller
      */
     public function index()
     {
-        //
+        $teams = Team::all();
+        return view('teams.index', ['teams'=>$teams]);
     }
 
     /**
@@ -46,7 +48,7 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        //
+        return view('teams.show', ['team' => $team]);
     }
 
     /**
