@@ -13,6 +13,14 @@
                   <li>Name: {{$news->user->name}}</li>
                   <li>Email: {{$news->user->email}}</li>
               </ul>
+              <h3>Teams</h3>
+              <ul>
+                  @foreach($news->teams as $team)
+                      <li>Name: {{$team->name}}</li>
+                      <li>Email: {{$team->email}}</li>
+                      <hr>
+                  @endforeach
+              </ul>
           </div><!-- /.blog-post -->
 
       </div><!-- /.blog-main -->

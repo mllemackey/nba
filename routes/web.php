@@ -26,3 +26,5 @@ Route::post('/login', 'LoginController@store');
 
 Route::get('/news', 'NewsController@index');
 Route::get('/news/{news}', 'NewsController@show');
+
+Route::get('/news/team/{team}', 'NewsController@newsByTeam');

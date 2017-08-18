@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\News;
+use App\Team;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -81,6 +82,13 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        //
+
+    }
+
+    public function newsByTeam(Team $team)
+    {
+        $news = $team->news()->with('user')->latest()->paginate(2);
+
+        return view('news.index', compact('news'));
     }
 }
