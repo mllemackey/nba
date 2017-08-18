@@ -23,3 +23,6 @@ Route::post('/register', 'RegisterController@store');
 Route::get('/login', 'LoginController@index')->name('login');
 Route::get('/logout', 'LoginController@destroy');
 Route::post('/login', 'LoginController@store');
+
+Route::get('/news', 'NewsController@index');
+Route::get('/news/{news}', 'NewsController@show');
