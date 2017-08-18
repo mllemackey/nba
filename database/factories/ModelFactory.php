@@ -28,7 +28,7 @@ $factory->define(App\News::class, function ($faker) {
         'title' => $faker->sentences(1, true),
         'content' => $faker->paragraph,
         'user_id' => function () {
-            return factory(App\User::class)->create()->id;
+            return App\User::inRandomOrder()->first();
         }
     ];
 });
